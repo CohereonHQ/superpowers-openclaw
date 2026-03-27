@@ -12,7 +12,7 @@
 
 | # | Skill | Description | Key Sub-Files |
 |---|-------|-------------|---------------|
-| 1 | `brainstorming` | Socratic design refinement before writing code. Presents spec in digestibly small sections. Saves design doc. | `visual-companion.md`, `spec-document-reviewer-prompt.md`, `scripts/` (visual brainstorming server) |
+| 1 | `brainstorming` | Socratic design refinement before writing code. Presents spec in digestibly small sections. Saves design doc. Uses OpenClaw built-in Canvas for visuals. | `spec-document-reviewer-prompt.md` |
 | 2 | `writing-plans` | Converts approved specs into bite-sized implementation plans (2-5 min per task). TDD-oriented, DRY, YAGNI. | `plan-document-reviewer-prompt.md` |
 | 3 | `executing-plans` | Inline batch execution of plan tasks with human checkpoints between batches. | — |
 | 4 | `subagent-driven-development` | Dispatches a fresh subagent per plan task with two-stage review (spec compliance → code quality). Fastest autonomous iteration. | `implementer-prompt.md`, `spec-reviewer-prompt.md`, `code-quality-reviewer-prompt.md` |
@@ -108,7 +108,6 @@ superpowers-openclaw/
 │   ├── brainstorming/
 │   │   ├── SKILL.md
 │   │   ├── spec-document-reviewer-prompt.md
-│   │   └── scripts/
 │   │       ├── server.cjs
 │   │       ├── helper.js
 │   │       ├── frame-template.html
@@ -222,7 +221,7 @@ Copy (or clone) the `skills/` directory into your OpenClaw workspace and the `AG
 - OpenClaw doesn't use slash commands — skills are referenced by path/name
 - Platform-specific integrations (Claude Code plugin, Codex, Cursor, OpenCode hooks) are not ported
 - Session initialization behavior is integrated into `AGENTS.md` rather than a shell hook
-- The `brainstorming` visual companion (HTML server) is included but optional
+- The `brainstorming` skill uses OpenClaw built-in Canvas for visuals (no external server needed)
 
 ## License
 
@@ -639,9 +638,9 @@ After saving the spec: "Design complete and saved. Ready to plan? I can use `wri
 - **Explicit sign-off** — don't assume agreement, confirm it
 - **One thing at a time** — don't present 10 decisions at once
 
-## Visual Companion (Optional)
+## Visual Output
 
-The `scripts/` directory contains a visual brainstorming companion — a local web server that can display spec sections interactively. This is optional and adds visual structure to the brainstorming session. To use it, start the server with `scripts/start-server.sh`.
+The `brainstorming` skill uses OpenClaw's built-in Canvas for visual output. See the SKILL.md for details.
 
 For OpenClaw, the text-based approach above is the primary method.
 ```
@@ -1068,7 +1067,6 @@ Every skill lives in `skills/<skill-name>/` and has:
 skills/<skill-name>/
 ├── SKILL.md              # Required: the skill definition
 ├── <subsidiary-files>    # Optional: prompts, scripts, references
-└── scripts/              # Optional: executable helpers
 ```
 
 ### SKILL.md Format
@@ -1276,7 +1274,7 @@ The following skills would be included in full in the repository:
 | Skills feel bureaucratic for small tasks | The workflow scales: tiny tasks skip formal brainstorming but always use TDD |
 | Skill descriptions trigger unintentionally | Keep descriptions precise and situation-specific |
 | OpenClaw subagent limitations | Test `subagent-driven-development` against OpenClaw's actual subagent capabilities |
-| Brainstorming visual companion is web-based | It's optional in OpenClaw; text-first approach is the standard |
+| Brainstorming uses built-in Canvas | No external server; visuals render inline in OpenClaw |
 
 ### Benefits
 
