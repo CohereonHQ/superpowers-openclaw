@@ -1,0 +1,23 @@
+// Graphviz Conventions for Skill Diagrams
+
+digraph SkillFlow {
+  rankdir=LR;
+  node [shape=box, style=rounded];
+
+  // Nodes
+  brainstorming [label="Brainstorming", fillcolor="#e8f5e9", color="#2e7d32"];
+  writingPlans [label="Writing Plans", fillcolor="#e3f2fd", color="#1565c0"];
+  executing [label="Executing Plans", fillcolor="#fff3e0", color="#e65100"];
+  reviewing [label="Code Review", fillcolor="#fce4ec", color="#c62828"];
+
+  // Edges
+  brainstorming -> writingPlans [label="spec approved"];
+  writingPlans -> executing [label="plan complete"];
+  executing -> reviewing [label="tasks done"];
+  reviewing -> brainstorming [label="changes requested"];
+
+  // Style
+  edge [color="#555"];
+  node [fontname="sans-serif", fontsize="12"];
+  edge [fontname="sans-serif", fontsize="10"];
+}
