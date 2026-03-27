@@ -77,6 +77,22 @@ Ready for planning → use `writing-plans` skill
 
 After saving the spec: "Design complete and saved. Ready to plan? I can use `writing-plans` to break this into implementation tasks."
 
+## Visual Output with Built-in Canvas (Recommended)
+
+OpenClaw has a built-in canvas for rendering visual content directly inside the chat interface.
+
+Whenever a design decision, layout, diagram, comparison, or mockup would benefit from visuals:
+
+- Render the visual directly in the built-in canvas using any format the canvas supports (HTML fragments, Mermaid diagrams, SVG, PlantUML, Excalidraw-style JSON, etc.).
+- Keep the main response concise and reference the canvas clearly, for example:
+  "See the canvas above for the proposed UI layout (Option A)."
+- Ask for explicit feedback on the visual the same way you do for text sections:
+  "Does this layout match what you had in mind? Any changes before we move to the next decision?"
+
+Do not start any external server, run scripts from a `scripts/` folder, or reference the old Visual Companion. The built-in canvas replaces it completely and provides a cleaner, inline experience with zero extra dependencies.
+
+This keeps the entire brainstorming flow inside OpenClaw and makes visual validation faster and more natural.
+
 ## Rules
 
 - **No code during brainstorming** — pure design conversation
